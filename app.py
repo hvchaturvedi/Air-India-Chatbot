@@ -4,7 +4,7 @@ from langchain_groq import ChatGroq
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import FastEmbedEmbeddings
 
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(
@@ -47,7 +47,7 @@ def build_vectorstore():
     split_docs = text_splitter.split_documents(documents)
 
     # Embeddings
-    embeddings = HuggingFaceEmbeddings(
+    embeddings = FastEmbedEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
@@ -148,4 +148,5 @@ Answer clearly and concisely:
 
 
 if __name__ == "__main__":
+
     main()
