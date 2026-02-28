@@ -1,0 +1,130 @@
+========================================
+Air India RAG Chatbot - AWS EC2 Deployment Guide
+========================================
+
+SERVER: Ubuntu EC2 Instance
+APP TYPE: Streamlit (RAG-based LLM Application)
+PORT: 8501
+
+
+----------------------------------------
+1. Update System
+----------------------------------------
+
+sudo apt update
+sudo apt upgrade -y
+
+
+----------------------------------------
+2. Install Required System Packages
+----------------------------------------
+
+sudo apt install git python3-pip python3-venv -y
+
+
+----------------------------------------
+3. Clone Repository
+----------------------------------------
+
+git clone <YOUR_GITHUB_REPO_LINK>
+cd Air-India-Chatbot
+
+
+----------------------------------------
+4. Create Virtual Environment
+----------------------------------------
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+
+----------------------------------------
+5. Install Dependencies
+----------------------------------------
+
+pip install -r requirements.txt
+
+
+----------------------------------------
+6. Set Environment Variable (API Key)
+----------------------------------------
+
+Temporary (Current Session Only):
+
+export GROQ_API_KEY="your_api_key_here"
+
+Permanent:
+
+echo 'export GROQ_API_KEY="your_api_key_here"' >> ~/.bashrc
+source ~/.bashrc
+
+
+----------------------------------------
+7. Run Application (Testing Mode)
+----------------------------------------
+
+streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+
+
+----------------------------------------
+8. Run Application (Background Mode)
+----------------------------------------
+
+nohup streamlit run app.py --server.port 8501 --server.address 0.0.0.0 &
+
+
+----------------------------------------
+9. Open Security Group Port
+----------------------------------------
+
+EC2 → Security Groups → Inbound Rules
+
+Add:
+Type: Custom TCP
+Port: 8501
+Source: 0.0.0.0/0
+
+
+----------------------------------------
+10. Access Application
+----------------------------------------
+
+http://<EC2_PUBLIC_IP>:8501
+
+
+----------------------------------------
+Optional: Stop Application
+----------------------------------------
+
+Find process:
+
+ps aux | grep streamlit
+
+Kill process:
+
+kill -9 <PID>
+
+
+----------------------------------------
+Architecture Summary
+----------------------------------------
+
+PDF Documents
+    ↓
+Chunking
+    ↓
+Vector Embeddings
+    ↓
+FAISS Vector Store
+    ↓
+Top-K Retrieval
+    ↓
+Groq LLM
+    ↓
+Streamlit UI
+    ↓
+AWS EC2 Deployment
+
+========================================
+End of Deployment Guide
+========================================
