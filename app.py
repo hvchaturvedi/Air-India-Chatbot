@@ -49,7 +49,7 @@ def build_vectorstore():
     split_docs = text_splitter.split_documents(documents)
 
     # Embeddings
-    embeddings = FastEmbedEmbeddings(
+    embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
@@ -152,6 +152,7 @@ Answer clearly and concisely:
 if __name__ == "__main__":
 
     main()
+
 
 
 
