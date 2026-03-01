@@ -1,7 +1,7 @@
-import os
+import 
+os.environ["STREAMLIT_SERVER_FILE_WATCHER_TYPE"] = "none"
 import streamlit as st
 from langchain_groq import ChatGroq
-from dotenv import load_dotenv
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # -------------------- ENV VARIABLE CHECK --------------------
-load_dotenv()
+
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 if not GROQ_API_KEY:
@@ -152,4 +152,5 @@ Answer clearly and concisely:
 if __name__ == "__main__":
 
     main()
+
 
