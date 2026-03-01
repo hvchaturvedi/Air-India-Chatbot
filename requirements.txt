@@ -1,13 +1,13 @@
 streamlit==1.38.0
 
-langchain==0.3.21
-langchain-community==0.3.21
-langchain-groq==0.1.9
-langchain-huggingface==0.0.3
+langchain>=0.3.23
+langchain-community>=0.3.23
+langchain-groq
+langchain-huggingface
 
-sentence-transformers==2.7.0
-torch==2.5.1
-faiss-cpu==1.9.0.post1
+sentence-transformers
+torch>=2.5.0
+faiss-cpu
 
-pypdf==4.3.1
-python-dotenv==1.0.1
+pypdf
+python-dotenv
