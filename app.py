@@ -16,10 +16,10 @@ st.set_page_config(
 
 # -------------------- ENV VARIABLE CHECK --------------------
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
-if not GROQ_API_KEY:
-    st.error("GROQ_API_KEY not set. Please configure environment variable.")
+try:
+    GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+except KeyError:
+    st.error("GROQ_API_KEY not set in Streamlit secrets.")
     st.stop()
 
 PDF_FOLDER = "pdfs"
@@ -152,6 +152,7 @@ Answer clearly and concisely:
 if __name__ == "__main__":
 
     main()
+
 
 
 
